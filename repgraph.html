@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head><title></title>
+<link type="text/css" href="css/custom-theme/jquery-ui-1.8.2.custom.css" rel="Stylesheet" />
+</head>
+<script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="jquery/jquery-ui-1.8.2.custom.min.js"></script>
+<script type="text/javascript" src="js/cpjshelper.js"></script>
+
+<body bgcolor="#ffcc66">
+<script type="text/javascript">
+    //Analytics
+    _gaq.push(['_trackPageview']);
+
+    $.fn.image = function (src, f) {
+        return this.each(function () {
+            $("<img style='width: 745px' />").appendTo(this).each(function () {
+                this.onload = f;
+                this.src = src;
+            });
+        });
+    }
+
+    $(document).ready(function () {
+        $("#repGraph").hide();
+        $("#repGraph").image(getCPRepGraph(), function () {
+            //image loaded, call back function if required;
+            $("#preLoad").hide();
+            $("#repGraph").show();
+        });
+    });
+	</script>
+    <div id="preLoad" style="padding-left:5px"><h3>Retrieving Graph <img alt="Loading Image" src="css/custom-theme/images/ui-anim_basic_16x16.gif" /></h3></div>
+    <div id="repGraph"></div>
+</body>
+</html>
