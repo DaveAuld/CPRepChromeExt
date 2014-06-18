@@ -1,80 +1,15 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>CPRepWatcher Options</title>
+    <title>CPRepWatcher Options</title>
     <link type="text/css" href="css/custom-theme/jquery-ui-1.8.2.custom.css" rel="Stylesheet" />
+    <script type="text/javascript" src="jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui-1.8.2.custom.min.js"></script>
+    <script type="text/javascript" src="js/cpjshelper.js"></script>
+    <script type="text/javascript" src="js/cprepoptions.js"></script>
+    <script type="text/javascript" src="js/analytics.js"></script>
 </head>
-<script type="text/javascript" src="jquery/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="jquery/jquery-ui-1.8.2.custom.min.js"></script>
-<script type="text/javascript" src="js/cpjshelper.js"></script>
-<script type="text/javascript">
-    // -------------------------------------------------
-    // Saves options to localStorage.
-    // -------------------------------------------------
-    function save_options() {
-
-        //Get the current saved memberID
-        var currentID = localStorage["memberID"];
-        var newID = textMemberID.value;
-
-        if (!(currentID == newID)) {
-            //memberID has changed
-            //Save the new memberID
-            localStorage["memberID"] = newID;
-
-            // Update status to let user know options were saved.
-            if (localStorage["memberID"] == newID) {
-                save_status.innerHTML = "MemberID: " + localStorage["memberID"] + " saved to local storage.";
-                setTimeout(function () { save_status.innerHTML = ""; }, 1000);
-
-                //Clear Saved Data
-                var newRep = new Array();
-                for (i = 0; i < 9; i++) {
-                    newRep[i] = "0";
-                }
-                //Update the stored Rep Data to 0 values
-                setNewRepDetail(newRep);
-            }
-            else
-            { save_status.innerHTML = "Error saving MemberID to localStorage."; }
-        }
-        else {
-            save_status.innerHTML = "MemberID: has not changed.";
-            setTimeout(function () { save_status.innerHTML = ""; }, 1000);
-        }
-    }
-
-    // -------------------------------------------------
-    // Restores memberId textbox state to saved value from localStorage.
-    // -------------------------------------------------
-    function restore_options() 
-    {
-        var memberID = localStorage["memberID"];
-        if (!memberID ) {
-            return;
-        }
-        var textbox = document.getElementById("textMemberID");
-        textbox.value = memberID.toString();
-    }
-
-    // -------------------------------------------------
-    // identifes the button
-    // -------------------------------------------------
-    $(function () {
-        $("button", ".save").button();
-    });
-</script>
-
-<body onload="restore_options()" bgcolor="#ffcc66">
-    <script type="text/javascript" src="analytics.js"></script>
-    <script type="text/javascript">
-        
-        // -------------------------------------------------
-        // Identifies the Tabs
-        // -------------------------------------------------
-        $(function () {
-            $("#tabs").tabs();
-        });
-    </script>
+<body style="background-color: #ffcc66">
 <center>
     <img alt="CodeProject Logo" src="images/codeproject468x60.gif" />
     <div style="width: 750px; font-size: small; text-align:left">
@@ -93,19 +28,14 @@
                 <br />
                 <br />
                 <div class="save">
-                    <button onclick="save_options()">
-                        Save MemberID</button></div>
+                    <button id="saveOptions">Save MemberID</button></div>
                 <br />
                 <div id="save_status" style="color: #FF0000">
                 </div>
                 <br />
             </div>
-            <!-- Tab 4 About ; Note: This does not require a section as it is a link URL in tab definition above-->
-  
         </div>
     </div>
-
-
 </center>
 </body>
 </html>

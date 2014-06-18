@@ -46,8 +46,6 @@ function setNewRepDetail(repDetail) {
     localStorage["prevRepDate"] = newRep[8]; 
 }
 
-
-
 /*************************
    CP Content Addresses
 **************************/
